@@ -52,6 +52,8 @@ RUN pip3 install --upgrade https://github.com/Lasagne/Lasagne/archive/master.zip
 
 RUN pip3 install -U scikit-learn
 
+RUN cd SciKit-Docker && git pull
+
 RUN Rscript /SciKit-Docker/installDependencies.R
 
 RUN python3 /SciKit-Docker/testInstallation.py

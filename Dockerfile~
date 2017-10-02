@@ -22,39 +22,35 @@ RUN yum-builddep -y python
 
 RUN rm -rf /var/cache/yum
 
-RUN curl -O https://www.python.org/ftp/python/3.7.0/Python-3.7.0a1.tar.xz
+RUN curl -O https://www.python.org/ftp/python/3.6.2/Python-3.6.2.tgz
 
-RUN tar -xf Python-3.7.0a1.tar.xz
+RUN tar -xf Python-3.6.2.tgz
 
 RUN echo REBUILD
 
-RUN cd /Python-3.7.0a1 && ./configure -enable-optimizations
+RUN cd /Python-3.6.2  && ./configure -enable-optimizations
 
-RUN cd /Python-3.7.0a1 && make && make install 
+RUN cd /Python-3.6.2  && make && make install 
 
 RUN python3 --version
 
 RUN pip3 install numpy rpy2 
 
-RUN git clone https://github.com/gosuzombie/SciKit-Docker.git
+RUN git clone https://github.com/gosuzombie/SciKit-Docker.git 
 
-RUN pip3 install cython 
+RUN pip3 install cython scipy
 
 RUN yum install -y lapack-devel openblas-devel blas-devel python-blist 
 
-RUN pip3 install --upgrade git+https://github.com/scipy/scipy.git 
+#RUN pip3 install --upgrade git+https://github.com/scipy/scipy.git 
+
+RUN echo STOP TOUCHING THE SCIPY INSTALL IT TAKES TOO LONG 
 
 RUN pip3 install --no-deps --upgrade https://github.com/Theano/Theano/archive/master.zip
 
 RUN pip3 install --upgrade https://github.com/Lasagne/Lasagne/archive/master.zip
 
-RUN curl -O https://pypi.python.org/packages/c2/38/e3b0333e661ab411545583cb24940223917fe7ffc9c68a77730dce3b10b0/scikit-learn-0.19.0.tar.gz#md5=5e7b6cb30f77ad0f219be08242313d
-
-RUN tar -xzf scikit-learn-0.19.0.tar.gz#md5=5e7b6cb30f77ad0f219be08242313d
-
-RUN cd /scikit-learn-0.19.0 && pip3 install .
-
-RUN pip3 install sklearn
+RUN pip3 install -U scikit-learn
 
 RUN Rscript /SciKit-Docker/installDependencies.R
 

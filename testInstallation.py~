@@ -1,3 +1,5 @@
+print("test installation")
+
 from __future__ import print_function
 from sklearn.cross_validation import StratifiedKFold, train_test_split
 from sklearn.preprocessing import LabelEncoder
