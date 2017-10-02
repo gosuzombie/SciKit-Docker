@@ -1,7 +1,7 @@
 source("https://bioconductor.org/biocLite.R")
 biocLite("HilbertVis")
 
-install.packages("data.table", repos='http://cran.utstat.utoronto.ca/')
+install.packages("data.table")
 
 library(data.table)
 library(HilbertVis)
